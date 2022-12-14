@@ -13,6 +13,7 @@ const deliveryAddressRoute = require('./app/deliveryAddress/router');
 const cartRoute = require('./app/cart/router');
 const orderRoute = require('./app/order/router');
 const invoiceRoute = require('./app/invoice/router');
+const mongodb = require ('./database/index')
 
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(decodeToken());
 
+mongodb();
 app.use('/auth', authRoute);
 app.use('/api', productRoute);
 app.use('/api', categoryRoute);
