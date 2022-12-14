@@ -13,11 +13,9 @@ const deliveryAddressRoute = require('./app/deliveryAddress/router');
 const cartRoute = require('./app/cart/router');
 const orderRoute = require('./app/order/router');
 const invoiceRoute = require('./app/invoice/router');
-const mongoose = require('mongoose');
 
 
 var app = express();
-const PORT = process.env.PORT || 5000
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,20 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(decodeToken());
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-connectDB().then(() => {
-  app.listen(PORT, () => {
-      console.log("listening for requests");
-  })
-})
 
 app.use('/auth', authRoute);
 app.use('/api', productRoute);
