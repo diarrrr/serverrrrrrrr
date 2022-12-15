@@ -2,7 +2,9 @@
   "name": "project-server",
   "version": "0.0.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "@casl/ability": "^6.3.3",
     "bcrypt": "^5.1.0",
